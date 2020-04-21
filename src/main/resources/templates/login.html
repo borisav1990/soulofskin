@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html dir="ltr"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <title>Login | The Soul of skin </title>
+    <link href="../dist/css/style.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
+            style="background:url(../../assets/images/big/megamenubg.jpg) no-repeat center center; background-size: cover;">
+            <div class="auth-box row">
+                <div class="col-lg-7 col-md-5 modal-bg-img" style="background-image: url(../assets/images/big/hero_4.jpg);">
+                </div>
+                <div class="col-lg-5 col-md-7 bg-white">
+                    <div class="p-3">
+                        <div class="text-center">
+                            <img src="../../assets/images/favicon.png" alt="wrapkit" width="45"height="45">
+                        </div>
+                        <h2 class="mt-3 text-center">Einloggen</h2>
+                        <p class="text-center">Geben Sie Ihre E-Mail-Adresse und Ihr Passwort ein, um auf das Admin-Panel zuzugreifen.</p>
+                        <form class="mt-4" th:action="@{/login}" method="post">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="text-dark" for="username">Nutzername</label>
+                                        <input class="form-control" id="username" name="username" type="text" placeholder="Geben Sie Ihren Benutzernamen ein">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="text-dark" for="pwd">Passwort</label>
+                                        <input class="form-control" id="password" type="password"  name="password" placeholder="Geben Sie Ihr Passwort ein">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 text-center">
+                                    <button type="submit" class="btn btn-block btn-dark">Weiter...</button>
+                                </div>
+                               
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+    </div>
+     <script src="../assets/libs/jquery/dist/jquery.min.js "></script>
+    <script src="../assets/libs/popper.js/dist/umd/popper.min.js "></script>
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.min.js "></script>
+    <script>
+        $(".preloader ").fadeOut();
+    </script>
+</body>
+
+</html>

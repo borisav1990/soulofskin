@@ -1,0 +1,27 @@
+ <!doctype html>
+ <html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org" >
+ 
+ <div class="col-md-3 ml-auto" >
+      
+          <div class="mb-5">
+           
+           <h3 class="h5 text-black mb-3">NEUESTE BEITRÄGE</h3>
+           <div class="d-flex no-block align-items-center" th:each="blog: ${listOfBlog}">
+              <div class="mr-3" ><img th:each = "file, itrStat : ${listOfImage}"   th:src="@{'/images/' + ${file.modifiedFileName}}" th:if="${file.blog.id == blog.id}"  alt="user" class="rounded-circle" width="45"height="45" /> </div>
+                    <div class="name-text align-self-center">
+                         <a class="text-dark mb-0 font-16 font-weight-medium" th:text=${blog.title} th:href="@{'/readBlog/' + ${blog.id}}"></a>
+                         <div class="name-text align-self-center">
+                            <span class="text-muted font-14" th:text=${blog.viewDate} ></span>
+                         </div>
+                         <hr>
+                    </div>
+                
+              </div>
+         </div>     
+  </div>
+  
+</html>
+ 
+ 
+         

@@ -1,0 +1,53 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+    
+    <!-- HEAD -->
+    <span th:replace="website/partials/_head"></span>
+  
+  <body>
+    
+    <!-- HEADER -->
+    <div th:replace="website/partials/_header"></div>
+   
+
+   
+
+      <!-- CONTENT -->
+     <div class="section">
+      <div class="container">
+        <div class="row align-items-stretch">
+        
+         <div >
+           <div class="half d-md-flex d-block" th:each="blog: ${listOfBlog}">
+            <div class="image order-2"  th:each = "file, itrStat : ${listOfImage}" th:if="${file.blog.id == blog.id AND blog.side == 'links'}" th:style="'background-image: url('+ @{'../../images/' + ${file.modifiedFileName}} +');'"></div>
+            <div class="image" th:each = "file, itrStat : ${listOfImage}" th:if="${file.blog.id == blog.id AND blog.side == 'rechts'}" th:style="'background-image: url('+ @{'../../images/' + ${file.modifiedFileName}} +');'"></div>
+            <div class="text text-center element-animate">
+              <span class="post-meta" th:text= "${blog.viewDate}"></span>
+              <h3 class="mb-4" th:text= "${blog.title}"></h3>
+              <p class="mb-5" th:text= "${blog.header}"></p>
+              <p><a th:href="@{'/readBlog/' + ${blog.id}}" class="btn btn-primary btn-sm px-3 py-2">Weiter lesen...</a></p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+     </div>
+
+    </div>
+    
+    
+    <!-- FOOTER -->
+    <div th:replace="website/partials/_footer"></div>
+
+    
+    <!-- SCRIPT -->
+    <script src="../../website/js/jquery-3.2.1.min.js"></script>
+    <script src="../../website/js/popper.min.js"></script>
+    <script src="../../website/js/bootstrap.min.js"></script>
+    <script src="../../website/js/owl.carousel.min.js"></script>
+    <script src="../../website/js/jquery.waypoints.min.js"></script>
+    <script src="../../website/js/jquery.fancybox.min.js"></script>
+    <script src="../../website/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org">
+    
+    <!-- HEAD -->
+    <span th:replace="website/partials/_head"></span>
+  
+  <body>
+    
+    <!-- HEADER -->
+    <div th:replace="website/partials/_header"></div>
+   
+
+   
+
+      <!-- CONTENT -->
+      <div class="section">
+        <div class="container">
+             <!-- **************************INFORMATION FROM RESPONSE SAVE************************************* -->
+                    <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${saveSuccess}">
+                      <strong th:text="${saveSuccess}"></strong>
+                    </div>
+                    <!-- **************************INFORMATION FROM RESPONSE ERROR************************************* -->
+                    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert" th:if="${error}">
+                       <strong th:text="${error}"></strong>
+                   </div> 
+           <div class="row justify-content-right">
+                   
+            <h5>Contact</h5>
+              <p class="d-flex">
+                   <span>Für sämtliche Fragen, Anregungen, Wünsche, Einladungen oder Kooperationsfragen können sie mich sehr gerne unter 
+                    thesoulofskin@yahoo.com kontaktieren oder benutzen Sie Kontaktformular.</span>
+                    </p>
+         </div>
+           
+            <div class="row">
+              <div class="col-md-6 mb-5 order-2">
+              
+                <form th:action = "@{'/sendMessage'}" th:object="${objOfMessage}" method="post">
+                  <div class="row">
+                    <div class="col-md-6 form-group">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control " th:field="*{name}">
+                    </div>
+                    <div class="col-md-6 form-group">
+                      <label for="phone">Email</label>
+                      <input type="text" id="phone" class="form-control" th:field="*{email}">
+                    </div>
+                  </div>
+                 
+                   <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="message">Schreiben Sie Nachricht</label>
+                      <textarea name="message" id="message" class="form-control " cols="30" rows="8" th:field="*{text}"></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 form-group">
+                      <input type="submit" value="Schicken Nachricht" class="btn btn-primary px-3 py-3">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-6 order-2 mb-5">
+                <div class="row justify-content-right">
+                  <div class="col-md-8 mx-auto contact-form-contact-info">
+                    <p class="d-flex">
+                      <span class="ion-ios-location icon mr-5"></span>
+                      <span>15150 Berlin, German</span>
+                    </p>
+                     <p class="d-flex">
+                      <span class="ion-android-mail icon mr-5"></span>
+                      <span>thesoulofskin@yahoo.com</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+     </div>
+     
+    
+    
+    <!-- FOOTER -->
+    <div th:replace="website/partials/_footer"></div>
+
+    
+    <!-- SCRIPT -->
+    <script src="../../website/js/jquery-3.2.1.min.js"></script>
+    <script src="../../website/js/popper.min.js"></script>
+    <script src="../../website/js/bootstrap.min.js"></script>
+    <script src="../../website/js/owl.carousel.min.js"></script>
+    <script src="../../website/js/jquery.waypoints.min.js"></script>
+    <script src="../../website/js/jquery.fancybox.min.js"></script>
+    <script src="../../website/js/main.js"></script>
+  </body>
+</html>

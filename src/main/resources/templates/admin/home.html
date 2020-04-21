@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html
+      xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<!-- HEAD -->
+    <span th:replace="admin/partials/_head"></span>
+<body>
+  
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+  
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+        <div th:replace="admin/partials/_header"></div>
+           <div th:replace="admin/partials/_sidebar"></div>
+               <div class="page-wrapper">
+                  <div class="container-fluid">
+                    
+                    <!-- **************************INFORMATION FROM RESPONSE************************************* -->
+                    <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${deleteSuccess}">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                      <strong th:text="${deleteSuccess}"></strong>
+                    </div>
+                    <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${saveSuccess}">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                      <strong th:text="${saveSuccess}"></strong>
+                    </div>
+                    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert" th:if="${error}">
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">×</span></button><strong th:text="${error}"></strong>
+                   </div>
+                    
+                     <!-- ******************************FORM FOR NEW BLOG****************************** -->
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Create neu Beitrag</h4>
+                                <form action="#" th:action="@{'/admin/saveBlog'}" th:object="${objOfBlog}" method="post" enctype="multipart/form-data">
+                                    <div class="form-body">
+                                    
+                                      <input type="hidden" class="form-control"  th:field="*{id}">
+                                       
+                                       <div class="row">
+                                          <div class="col-md-7">
+                                             <label>Title: </label>
+                                             <div class="form-group">
+                                                <input type="text" class="form-control" th:field="*{title}">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                             <label>Bilds Seite: </label>
+                                                <div class="form-group">
+                                                    <select class="form-control" id="exampleFormControlSelect1" th:field="*{side}">
+                                                        <option th:selected th:value="links">Wählen Sie eine Seite</option>
+                                                        <option th:value="links">Linkes Bild</option>
+                                                        <option th:value="rechts">Rechts Bild</option>
+                                                        
+                                                     </select>
+                                                </div>
+                                            </div>
+                                         </div>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                             <label>Header: </label>
+                                                <div class="form-group">
+                                                    <textarea class="form-control" rows="8"   th:field="*{header}"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                             <label>Beitrag teilen mit: </label>
+                                                <div class="form-group">
+                                                    <select class="form-control" id="exampleFormControlSelect1" th:field="*{share}">
+                                                        <option th:selected th:value="life"> Wählen Sie eine Kategorie: </option>
+                                                        <option th:value="life">-teil mit Life</option>
+                                                        <option th:value="skin">-teil mit Skin</option>
+                                                        
+                                                     </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">   
+                                           <div class="col-md-10">
+                                            <label>Body: </label>
+                                               <div class="form-group">
+                                                    <textarea class="form-control" rows="20" cols="50"   th:field="*{body}"></textarea>
+                                                </div>
+                                            </div>
+                                         </div>
+                                         
+                                         <div class="row">   
+                                           <div class="col-md-10">
+                                            <label>Footer: </label>
+                                               <div class="form-group">
+                                                    <textarea class="form-control" rows="5"  th:field="*{footer}"></textarea>
+                                                </div>
+                                            </div>
+                                         </div>
+                                         
+                                         <div class="row">
+                                          <div class="col-md-10">
+                                             <label>Date: </label>
+                                             <div class="form-group">
+                                                <input type="date" class="form-control" th:field="*{published}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                         
+                                         
+                                        
+                                        
+                                       
+                                       <div class="row">
+                                         <div class="col-md-6">
+                                           <label>Bild hinzufügen:</label>
+                                                 <fieldset class="form-group">
+                                                   <input type="file" class="form-control-file" id="imageList"  th:field="*{imageList}" multiple="multiple">
+                                                 </fieldset>
+                                          </div>
+                                       </div>
+                                       <div class="row">
+                                          <div class="form-group" th:each = "file, itrStat : ${listOfImg}"   th:id="'imageindex'+${itrStat.index}" >
+                                               <span >
+                                       
+                                            <span    >
+                                                  <img class="rounded-circle" th:src="@{'/images/' + ${file.modifiedFileName}}" style="width:90px; height:90px; border-radius:50%; margin-left:30px;" />
+                                                <span class = "overlay">
+                                                  <a href="#" class="icon image-confirm-delete" title="Löschen bild" th:attr="data-id=${itrStat.index}, data-name=${file.modifiedFileName}">
+                                                     <i class="fa fa-trash" style="color:red;"></i>
+                                                 </a>
+                                               </span>
+                                              
+                                               
+                                               
+                                             </span>
+                                             
+                                       </span>
+                                            
+                                    </div>
+                                        <input type="hidden" class="form-control" th:field="*{removeImages}" th:id="removeImages" >
+                                       
+                                       </div>
+                               </div>
+                                    <div class="form-actions">
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-info" th:text= "@{${isUpdated} ?'Aktualizieren':'Speichern'}"></button>
+                                            <a type="reset" class="btn btn-dark" href="/admin/home">Zurücksetzen</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- ******************************TABLE FROM ALL VEHICLE****************************** -->
+                     <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4">
+                                    <h4 class="card-title">Alle veröffentlichten Beiträge</h4>
+                                   
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table no-wrap v-middle mb-0">
+                                        <thead>
+                                            <tr class="border-0">
+                                                <th class="border-0 font-14 font-weight-medium text-muted">Beitrag:</th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted">Bilds Seite:</th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted">Action:</th>
+                                               
+                                               
+                                            </tr>
+                                        </thead>
+                                        <tbody >
+                                            <tr th:each="blog: ${listOfBlog}" >
+                                                <td class="px-2 py-4" >
+                                                    <div class="d-flex no-block align-items-center" >
+                                                        <div class="mr-3" >
+                                                              <img th:each = "file, itrStat : ${listOfImage}"   th:src="@{'/images/' + ${file.modifiedFileName}}" th:if="${file.blog.id == blog.id}"  alt="user" class="rounded-circle" width="45"height="45" />
+                                                        </div>
+                                                        <div class="">
+                                                            <h5 class="text-dark mb-0 font-16 font-weight-medium" th:text=${blog.title}> </h5>
+                                                            <span class="text-muted font-14" th:text=${blog.viewDate} ></span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><h5 class="text-dark mb-0 font-16 font-weight-medium" th:text=${blog.side}> </h5></td>
+                                                <td class="font-weight-medium text-dark border-top-0 px-2 py-4">
+                                                   <a type="button" class="btn waves-effect waves-light btn-rounded btn-outline-danger delBtnBlog"  th:href="@{'/admin/deleteBlog/' + ${blog.id}}" th:attr="data-vehicle=${blog.title + ' published: ' + blog.published} ">Löschen</a>
+                                                   <a type="button" class="btn waves-effect waves-light btn-rounded btn-outline-warning" th:href="@{'/admin/editBlog/' + ${blog.id}}">Aktualisieren</a>
+                                                   <a type="button" class="btn waves-effect waves-light btn-rounded btn-outline-success" th:href="@{'/readBlog/' + ${blog.id}}">Rückblick</a>
+                                                
+                                                </td>
+                                            </tr>
+                                              </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!-- ******************************DELETE POPUP****************************** -->
+                  <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                             <h5 class="modal-title" id="myModalLabel">Löschen Beitrag</h5>
+                                 <button aria-label="Close" class="close" data-dismiss="modal"type="button"><span aria-hidden="true">&times;</span></button>
+                          </div>
+               
+                      <div class="modal-body">
+                        <p class="alert alert-danger" id="deleteLearner"></p>
+                         <input type="hidden" class="form-control" th:id="removeLearner" th:name="removeLearner">
+                     </div>
+                     <div class="modal-footer">
+                         <button class="btn btn-secondary" data-dismiss="modal" type="button">Züruck</button>
+                       <a class="btn btn-danger" href="" id="delRef">Bestätigen</a>
+                     </div>
+                </div>
+           </div>
+         </div>
+                 </div>
+                </div>
+                 </div>
+            
+            <div th:replace="admin/partials/_footer"></div>
+    
+     <script type="text/javascript">
+      $(function(){
+	 var images = [];
+	 $('.image-confirm-delete').on('click',function(e){
+		 e.preventDefault();
+		 var id = $(this).data('id');
+		 var name = $(this).data('name');
+		 images.push(name);
+		 $('#removeImages').val(images);
+		 $('#imageindex'+id).hide();
+	 });
+	 
+      });
+    </script>
+    <script type="text/javascript" th:src="@{../../assets/js/deleteBlog.js}" src="../../static/assets/js/deleteBlog.js"></script>
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- apps -->
+    <!-- apps -->
+    <script src="../../dist/js/app-style-switcher.js"></script>
+    <script src="../../dist/js/feather.min.js"></script>
+    <script src="../../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../../dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="../../dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <script src="../../assets/extra-libs/c3/d3.min.js"></script>
+    <script src="../../assets/extra-libs/c3/c3.min.js"></script>
+    <script src="../../assets/libs/chartist/dist/chartist.min.js"></script>
+    <script src="../../assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="../../assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="../../assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="../../dist/js/pages/dashboards/dashboard1.min.js"></script>
+</body>
+</body>
+</html>

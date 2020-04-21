@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html
+      xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<!-- HEAD -->
+    <span th:replace="admin/partials/_head"></span>
+<body>
+  
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+  
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+        <div th:replace="admin/partials/_header"></div>
+           <div th:replace="admin/partials/_sidebar"></div>
+               <div class="page-wrapper">
+                  <div class="container-fluid">
+                    
+                    <!-- **************************INFORMATION FROM RESPONSE************************************* -->
+                    <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${deleteSuccess}">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                      <strong th:text="${deleteSuccess}"></strong>
+                    </div>
+                   
+                    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert" th:if="${error}">
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">×</span></button><strong th:text="${error}"></strong>
+                   </div>
+                    
+                    <!-- ******************************All messsage****************************** -->
+                  <div class="col-lg-9  col-xl-10" th:each="message :${listOfMessage}"> 
+                  
+                   <ul class="chat-list list-style-none px-3 pt-3">
+                          <li class="chat-item list-style-none mt-3">
+                             <div class="chat-img d-inline-block"><img src="../../assets/images/users/icon_message.png" alt="user" class="rounded-circle" width="45"> </div>
+                              <div class="chat-content d-inline-block pl-3">
+                                <h5 class="font-weight-medium" th:text="${message.name}">James Anderson</h5>
+                                <h6 class="font-weight-medium" th:text="${message.email}">James Anderson</h6>
+                                <div class="msg p-2 d-inline-block mb-1" th:text="${message.text}">Lorem Ipsum is simply dummy text of the printing &amp; type setting industry.</div>
+                                <div class="chat-time d-block font-10 mt-1 mr-0 mb-3" th:text="${message.showDateTime}">10:56 am </div>
+                               </div>
+                                <div class="row">
+                                   <div class="col-md-2">
+                                     <a type="button" class="btn btn-warning btn-rounded" target="_blank" href="https://login.yahoo.com/" >
+                                     <span class="btn-label"><i class="far fa-envelope"></i></span>Antworten</a>
+                                   </div>
+                                
+                                   <div class="col-md-2">
+                                       <a type="button" class="btn btn-danger btn-rounded delBtnBlog" th:href="@{'/admin/deleteMessage/' + ${message.id}}" th:attr="data-vehicle=${'message von ' + message.name}" >
+                                       <span class="btn-label"><i class="far fa-heart"></i></span>Löschen</a>
+                                      
+                                  </div>
+                                   
+                                </div>
+                                
+                                
+                                   </li>
+                                           
+                          </ul>
+                   </div>   
+                  
+                  
+                  
+                  
+                  
+                
+                
+                <!-- ******************************DELETE POPUP****************************** -->
+                  <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                             <h5 class="modal-title" id="myModalLabel">Löschen Beitrag</h5>
+                                 <button aria-label="Close" class="close" data-dismiss="modal"type="button"><span aria-hidden="true">&times;</span></button>
+                          </div>
+               
+                      <div class="modal-body">
+                        <p class="alert alert-danger" id="deleteLearner"></p>
+                         <input type="hidden" class="form-control" th:id="removeLearner" th:name="removeLearner">
+                     </div>
+                     <div class="modal-footer">
+                         <button class="btn btn-secondary" data-dismiss="modal" type="button">Züruck</button>
+                       <a class="btn btn-danger" href="" id="delRef">Bestätigen</a>
+                     </div>
+                </div>
+           </div>
+         </div>
+                 </div>
+                </div>
+                 </div>
+            
+            <div th:replace="admin/partials/_footer"></div>
+    
+    <script type="text/javascript" th:src="@{../../assets/js/deleteBlog.js}" src="../../static/assets/js/deleteBlog.js"></script>
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- apps -->
+    <!-- apps -->
+    <script src="../../dist/js/app-style-switcher.js"></script>
+    <script src="../../dist/js/feather.min.js"></script>
+    <script src="../../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../../dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="../../dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <script src="../../assets/extra-libs/c3/d3.min.js"></script>
+    <script src="../../assets/extra-libs/c3/c3.min.js"></script>
+    <script src="../../assets/libs/chartist/dist/chartist.min.js"></script>
+    <script src="../../assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="../../assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="../../assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="../../dist/js/pages/dashboards/dashboard1.min.js"></script>
+</body>
+</body>
+</html>

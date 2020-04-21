@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html
+      xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<!-- HEAD -->
+    <span th:replace="admin/partials/_head"></span>
+<body>
+  
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+  
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+        <div th:replace="admin/partials/_header"></div>
+           <div th:replace="admin/partials/_sidebar"></div>
+               <div class="page-wrapper">
+                  <div class="container-fluid">
+                    
+                    <!-- **************************INFORMATION FROM RESPONSE************************************* -->
+                    <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${deleteSuccess}">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                      <strong th:text="${deleteSuccess}"></strong>
+                    </div>
+                    <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${saveSuccess}">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                      <strong th:text="${saveSuccess}"></strong>
+                    </div>
+                    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert" th:if="${error}">
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">×</span></button><strong th:text="${error}"></strong>
+                   </div>
+                    
+                     <!-- ******************************FORM FOR UPDATE COMMENT****************************** -->
+                    <div class="row">
+                      <div class="col-12" th:if="${isUpdate}">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Aktualizieren kommentar</h4>
+                                <form action="#" th:action="@{'/admin/saveComment'}" th:object="${objOfComment}" method="post" >
+                                    <div class="form-body">
+                                    
+                                      <input type="hidden" class="form-control"  th:field="*{id}">
+                                       
+                                       <div class="row">
+                                          <div class="col-md-5">
+                                             <label>Name: </label>
+                                             <div class="form-group">
+                                                <input type="text" class="form-control" th:field="*{nickname}">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-5">
+                                             <label>Email: </label>
+                                                <div class="form-group">
+                                                   <input type="text" class="form-control" th:field="*{email}">
+                                                </div>
+                                            </div>
+                                         </div>
+                                        
+                                         <div class="row">   
+                                           <div class="col-md-10">
+                                            <label>Body: </label>
+                                               <div class="form-group">
+                                                    <textarea class="form-control" rows="10" cols="50"   th:field="*{text}"></textarea>
+                                                </div>
+                                            </div>
+                                         </div>
+                                         
+                                         <input type="hidden"  class="form-control" th:field="*{blog}"  >
+                                         
+                                          </div>
+                                    <div class="form-actions">
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-info" th:text= "Aktualizieren"></button>
+                                            <a type="reset" class="btn btn-dark" href="/admin/comment">Zurücksetzen</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <!-- ******************************TABLE FROM ALL POST****************************** -->
+                    <div class="col-12" th:each="blog: ${listOfBlog}" >
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex no-block align-items-center" >
+                                      <div class="mr-3" >
+                                             <img th:each = "file, itrStat : ${listOfImage}"   th:src="@{'/images/' + ${file.modifiedFileName}}" th:if="${file.blog.id == blog.id}"  alt="user" class="rounded-circle" width="45"height="45" />
+                                       </div>
+                                 <div class="">
+                                     <h4 class="text-dark mb-0 font-16 font-weight-medium" th:text=${blog.title}> </h4>
+                                     <span class="text-muted font-14" th:text=${blog.viewDate} ></span>
+                                  </div>
+                              </div>
+                                
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Datum:</th>
+                                            <th scope="col">Name:</th>
+                                            <th scope="col">E-mail:</th>
+                                            <th scope="col">Text:</th>
+                                            <th scope="col">Bearbeiten:</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:class="@{${comment.allowed} ? 'table-success':'table-warning'}" th:each="comment: ${listOfComment}" th:if="${comment.blog.id == blog.id}" > 
+                                            <td th:text="${comment.showDate}"></td>
+                                            <td th:text="${comment.nickname}"></td>
+                                            <td th:text="${comment.email}"></td>
+                                            <td th:text="${comment.text}"></td>
+                                           
+                                            <td>
+                                                <a type="button" class="btn waves-effect waves-light btn-rounded btn-outline-danger delBtnBlog"  th:href="@{'/admin/deleteComment/' + ${comment.id}}" th:attr="data-vehicle=${'komentar von ' + comment.nickname}">Löschen</a>
+                                                <a type="button" class="btn waves-effect waves-light btn-rounded btn-outline-warning" th:href="@{'/admin/editComment/' + ${comment.id}}">Aktualisieren</a>
+                                                <a type="button" 
+                                                   th:class="@{${comment.allowed} ? 'btn waves-effect waves-light btn-rounded btn-outline-danger' : 'btn waves-effect waves-light btn-rounded btn-outline-success'}" 
+                                                   th:text="@{${comment.allowed} ? 'Verbiet' : 'Akzeptiert'}" 
+                                                   th:href="@{'/admin/allowedComment/' + ${comment.id}}"></a>
+                                            </td>
+                                        </tr>
+                                     </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                
+                <!-- ******************************DELETE POPUP****************************** -->
+                  <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                             <h5 class="modal-title" id="myModalLabel">Löschen Beitrag</h5>
+                                 <button aria-label="Close" class="close" data-dismiss="modal"type="button"><span aria-hidden="true">&times;</span></button>
+                          </div>
+               
+                      <div class="modal-body">
+                        <p class="alert alert-danger" id="deleteLearner"></p>
+                         <input type="hidden" class="form-control" th:id="removeLearner" th:name="removeLearner">
+                     </div>
+                     <div class="modal-footer">
+                         <button class="btn btn-secondary" data-dismiss="modal" type="button">Züruck</button>
+                       <a class="btn btn-danger" href="" id="delRef">Bestätigen</a>
+                     </div>
+                </div>
+           </div>
+         </div>
+                 </div>
+                </div>
+                 </div>
+            
+            <div th:replace="admin/partials/_footer"></div>
+    
+    <script type="text/javascript" th:src="@{../../assets/js/deleteBlog.js}" src="../../static/assets/js/deleteBlog.js"></script>
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- apps -->
+    <!-- apps -->
+    <script src="../../dist/js/app-style-switcher.js"></script>
+    <script src="../../dist/js/feather.min.js"></script>
+    <script src="../../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../../dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="../../dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <script src="../../assets/extra-libs/c3/d3.min.js"></script>
+    <script src="../../assets/extra-libs/c3/c3.min.js"></script>
+    <script src="../../assets/libs/chartist/dist/chartist.min.js"></script>
+    <script src="../../assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="../../assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="../../assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="../../dist/js/pages/dashboards/dashboard1.min.js"></script>
+</body>
+</body>
+</html>

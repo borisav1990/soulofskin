@@ -1,0 +1,128 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org" >
+
+ <!-- HEAD -->
+    <span th:replace="website/partials/_head"></span>
+
+<body>
+
+   <div class="slide-item" style="background-image: url('../../website/images/hero_3.png');">
+    <div class="container" >
+      <div  class="row align-items-center justify-content-center text-center"  >
+          <a href="/" class="link-thumbnail"> 
+          <img src="../../website/images/hero_2.png" alt="Image" class="img-fluid "> 
+       </a>
+      </div>
+      </div>
+    </div>
+ 
+ <!-- CONTENT -->
+  <div class="section">
+    <div class="container">
+      
+                   <!-- **************************INFORMATION FROM RESPONSE SAVE************************************* -->
+                    <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${saveSuccess}">
+                    
+                      <strong th:text="${saveSuccess}"></strong>
+                    </div>
+                    
+                    <!-- **************************INFORMATION FROM RESPONSE ERROR************************************* -->
+                    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert" th:if="${error}">
+                      
+                      <strong th:text="${error}"></strong>
+                   </div>
+                    
+    
+      <div class="row align-items-center justify-content-center text-center">
+         <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+           <h4 class="mb-5" th:text= "${objOfBlog.title}"></h4>
+         </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-lg-8">
+          <figure th:each = "file, itrStat : ${listOfImg}" >
+            <img   th:src="@{'../../images/' + ${file.modifiedFileName}}"    alt="Image" class="img-fluid">
+            <figcaption></figcaption>
+          </figure>
+          <textarea  th:text= "${objOfBlog.body}"  rows="15" cols="100" disabled="disabled" style="background-color: white; text-align: justify; border: none;" ></textarea>
+          
+          <p class="mb-5" th:text= "${objOfBlog.footer}"></p>
+     
+       <div class="btn btn-light"><a href="/" class="reply rounded">Zurück nach Homepage </a></div>
+            
+
+
+   <!-- COMMENT SHOW -->
+     <div class="pt-5">
+            <h3 class="mb-5">Kommentare</h3>
+            <ul class="comment-list" th:each = "comment : ${listOfComment}"  >
+              <li class="comment">
+                <div class="vcard">
+                  <img src="../../website/images/person_unisex.jpg" alt="Image placeholder">
+                </div>
+                <div class="comment-body">
+                  <h3 th:text= "${comment.nickname}" ></h3>
+                  <div class="meta" th:text= "${comment.showDate}"></div>
+                  <p th:text= "${comment.text}"></p>
+                  <!-- <p><a href="#" class="reply rounded">Reply</a></p> -->
+                </div>
+              </li>
+  
+            </ul>
+      
+      <!-- COMMENT LEAVE -->       
+            <div class="comment-form-wrap pt-5">
+              <h3 class="mb-5">Hinterlasse einen Kommentar</h3>
+              
+              <form th:action="@{'/saveComment'}" th:object="${objOfComment}" method="post" class="p-5 bg-light">
+                <div class="form-group">
+                  <label for="name">Name *</label>
+                  <input type="text" class="form-control" th:field="*{nickname}">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email *</label>
+                  <input type="email" class="form-control" th:field="*{email}">
+                </div>
+  
+                <div class="form-group">
+                  <label for="message">Kommentar</label>
+                  <textarea name="" id="message" cols="30" rows="10" class="form-control" th:field="*{text}"></textarea>
+                </div>
+                <div class="form-group">
+                  <input type="submit" value="Speichern" class="btn btn-primary">
+                </div>
+                
+                <input type="hidden" th:value="${objOfBlog.id}" class="form-control" id="blog"  name="blog" >
+  
+              </form>
+            </div>
+          </div>
+  
+        </div>
+  
+        <span th:replace="website/partials/_side"></span>
+  
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  <!-- FOOTER  -->
+  <div th:replace="website/partials/_footer"></div>
+
+  
+
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.fancybox.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
