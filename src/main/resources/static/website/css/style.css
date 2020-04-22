@@ -9954,6 +9954,7 @@ header .search-form .form-control {
 }
 
 .slider-item {
+  background-image: url('../../website/images/hero_4.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -9968,6 +9969,7 @@ header .search-form .form-control {
   top: 0;
   height: 500px;
   width: 100%;
+  
   background: black;
   background: -moz-linear-gradient(top, #2125298c 0%, rgba(238, 159, 167, 0) 100%);
   background: -webkit-gradient(left top, left bottom, color-stop(0%, #2125298c), color-stop(100%, rgba(238, 159, 167, 0)));
