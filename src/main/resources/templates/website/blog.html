@@ -85,7 +85,7 @@
         <div class="col-lg-8">
        
           <figure class="row" th:each = "file, itrStat : ${listOfImg}"  >
-            <img th:src="@{'../../images/' + ${file.modifiedFileName}}" style="background-size: cover;"    alt="Image" class="img-fluid">
+            <img th:src="@{'../../images/' + ${file.modifiedFileName}}" style="min-height:auto; max-width:100%">
             <figcaption></figcaption>
           </figure>
           
