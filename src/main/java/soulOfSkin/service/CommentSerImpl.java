@@ -45,7 +45,7 @@ public class CommentSerImpl implements CommentService {
 
 	@Override
 	public boolean saveComment(Comment comment) {
-		if ((!comment.getNickname().equals("")) && (!comment.getEmail().equals(""))) {
+		if ((!comment.getNickname().equals("")) && (!comment.getEmail().equals("") && comment.isAllowed())) {
 			comment.setSaved(new Date());
 			commRepository.save(comment);
 			return true;

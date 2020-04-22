@@ -6,7 +6,7 @@
       
           <div class="mb-5">
            
-           <h3 class="h5 text-black mb-3">NEUESTE BEITRÄGE</h3>
+           <h3 class="h5 text-black mb-3">Neueste Beiträge:</h3>
            <div class="d-flex no-block align-items-center" th:each="blog: ${listOfBlog}">
               <div class="mr-3" ><img th:each = "file, itrStat : ${listOfImage}"   th:src="@{'/images/' + ${file.modifiedFileName}}" th:if="${file.blog.id == blog.id}"  alt="user" class="rounded-circle" width="45"height="45" /> </div>
                     <div class="name-text align-self-center">

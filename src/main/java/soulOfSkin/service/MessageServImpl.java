@@ -51,7 +51,7 @@ public class MessageServImpl implements MessageService {
 
 	@Override
 	public boolean sendMessage(Message message) {
-		if ((!message.getName().equals("")) && (!message.getEmail().equals(""))) {
+		if ((!message.getName().equals("")) && (!message.getEmail().equals("")) && (message.isDataAccept())) {
 			message.setSent(new Date());
 			messageRepository.save(message);
 			return true;

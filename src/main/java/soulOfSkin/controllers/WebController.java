@@ -121,7 +121,8 @@ public class WebController {
 			redirectAttr.addFlashAttribute("saveSuccess", "Nach der Überprüfung werden Kommentare veröffentlicht.");
 			return "redirect:/readBlog/" + commId;
 		} else {
-			redirectAttr.addFlashAttribute("error", "Fehler! Einige Felder sind erforderlich (Name und E-Mail).");
+			redirectAttr.addFlashAttribute("error",
+					"Fehler! Einige Felder sind erforderlich (Name,E-Mail and Datenschutz).");
 			return "redirect:/readBlog/" + commId;
 		}
 
@@ -129,13 +130,15 @@ public class WebController {
 
 	@RequestMapping("/sendMessage")
 	public String sendMessage(Model model, @ModelAttribute Message message, RedirectAttributes redirectAttr) {
+
 		boolean savedSuccess = messageService.sendMessage(message);
 		if (savedSuccess) {
 			redirectAttr.addFlashAttribute("saveSuccess",
 					"Nachricht erfolgreich gesendet. Sie erhalten innerhalb von 48 Stunden eine Antwort.");
 			return "redirect:/contact";
 		} else {
-			redirectAttr.addFlashAttribute("error", "Fehler! Einige Felder sind erforderlich (Name und E-Mail).");
+			redirectAttr.addFlashAttribute("error",
+					"Fehler! Einige Felder sind erforderlich (Name,E-Mail und Datenschutz).");
 			return "redirect:/contact";
 		}
 

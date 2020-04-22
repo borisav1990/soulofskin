@@ -27,9 +27,12 @@
            <div class="row">
                   <div class="col-md-12 form-group"> 
             <h5>Contact</h5>
-              <p class="d-flex">
-                   <span>Für sämtliche Fragen, Anregungen, Wünsche, Einladungen oder Kooperationsfragen können sie mich sehr gerne unter 
+                  <p class="d-flex">
+                   <span>Für sämtliche Fragen, Anregungen, Wünsche, Einladungen oder Kooperationsfragen können Sie mich sehr gerne unter 
                     thesoulofskin@yahoo.com kontaktieren oder benutzen Sie Kontaktformular.</span>
+                  </p>
+                  <p class="d-flex">
+                   <span>(*) markierte Felder müssen ausgefüllt werden, um eine Nachricht zu senden.</span>
                   </p>
                    </div> 
          </div>
@@ -40,11 +43,11 @@
                 <form th:action = "@{'/sendMessage'}" th:object="${objOfMessage}" method="post">
                   <div class="row">
                     <div class="col-md-6 form-group">
-                      <label for="name">Name</label>
+                      <label for="name">Name*</label>
                       <input type="text" class="form-control " th:field="*{name}">
                     </div>
                     <div class="col-md-6 form-group">
-                      <label for="phone">Email</label>
+                      <label for="phone">Email*</label>
                       <input type="text" id="phone" class="form-control" th:field="*{email}">
                     </div>
                   </div>
@@ -56,8 +59,18 @@
                     </div>
                   </div>
                   <div class="row">
+                  <div class="col-md-12 form-group">
+                    <label for="phone">Datenschutz*</label>
+                     <div class="custom-control custom-checkbox">
+                        <input type="checkbox" value="true"  name="dataAccept" class="custom-control-input" id="customCheck1">
+                          <label class="custom-control-label" for="customCheck1">Mit dem Absenden dieses Kommentars akzeptiere ich die Datenschutzerklärung von The Soul of skin.</label>
+                    </div>
+                     
+                    </div>
+                  </div>
+                  <div class="row">
                     <div class="col-md-6 form-group">
-                      <input type="submit" value="Schicken Nachricht" class="btn btn-primary px-3 py-3">
+                      <input type="submit" value="NACHRICHT ABSENDEN" class="btn btn-primary px-3 py-3">
                     </div>
                   </div>
                 </form>
@@ -67,7 +80,7 @@
                   <div class="col-md-8 mx-auto contact-form-contact-info">
                     <p class="d-flex">
                       <span class="ion-ios-location icon mr-5"></span>
-                      <span>15150 Berlin, German</span>
+                      <span>Berlin, German</span>
                     </p>
                      <p class="d-flex">
                       <span class="ion-android-mail icon mr-5"></span>

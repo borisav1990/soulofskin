@@ -37,6 +37,17 @@ public class Message {
 	@Transient
 	private String showDateTime;
 
+	@Transient
+	private boolean dataAccept;
+
+	public boolean isDataAccept() {
+		return dataAccept;
+	}
+
+	public void setDataAccept(boolean dataAccept) {
+		this.dataAccept = dataAccept;
+	}
+
 	public Long getId() {
 		return id;
 	}

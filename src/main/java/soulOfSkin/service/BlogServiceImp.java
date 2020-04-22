@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import soulOfSkin.models.Blog;
 import soulOfSkin.models.Image;
 import soulOfSkin.repository.BlogRepository;
+import soulOfSkin.repository.CommentRepository;
 import soulOfSkin.repository.ImageRepository;
 
 @Service
@@ -28,6 +29,9 @@ public class BlogServiceImp implements BlogService {
 
 	@Autowired
 	private BlogRepository blogRepository;
+
+	@Autowired
+	private CommentRepository commentRepository;
 
 	@Autowired
 	private ImageRepository ImgRep;
@@ -111,6 +115,7 @@ public class BlogServiceImp implements BlogService {
 		Blog blog = new Blog();
 		blog.setRemoveImages(delList);
 
+		commentRepository.deleteAllCommentWithBlog(blogId);
 		deleteAllImagesByte(blog);
 		ImgRep.deleteAllImagesByBlog(blogId);
 		blogRepository.deleteById(blogId);
