@@ -3,12 +3,12 @@
 	  xmlns:th="http://www.thymeleaf.org">
     
     <!-- HEAD -->
-    <span th:replace="website/partials/_head"></span>
+    <th:block th:replace="website/partials/_head"></th:block>
   
   <body>
     
     <!-- HEADER -->
-    <div th:replace="website/partials/_header"></div>
+    <th:block th:replace="website/partials/_header"></th:block>
    
 
    
@@ -75,6 +75,7 @@
                   </div>
                 </div>
               </div>
+             
             </div>
           </div>
      </div>
@@ -82,7 +83,7 @@
     
     
     <!-- FOOTER -->
-    <div th:replace="website/partials/_footer"></div>
+    <th:block th:replace="website/partials/_footer"></th:block>
 
     
     <!-- SCRIPT -->

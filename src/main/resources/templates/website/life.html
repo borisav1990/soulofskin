@@ -3,12 +3,12 @@
 	  xmlns:th="http://www.thymeleaf.org">
     
     <!-- HEAD -->
-    <span th:replace="website/partials/_head"></span>
+    <th:block th:replace="website/partials/_head"></th:block>
   
   <body>
     
     <!-- HEADER -->
-    <div th:replace="website/partials/_header"></div>
+    <th:block th:replace="website/partials/_header"></th:block>
    
 
    
@@ -26,7 +26,7 @@
               <span class="post-meta" th:text= "${blog.viewDate}"></span>
               <h3 class="mb-4" th:text= "${blog.title}"></h3>
               <p class="mb-5" th:text= "${blog.header}"></p>
-              <p><a th:href="@{'/readBlog/' + ${blog.id}}" class="btn btn-primary btn-sm px-3 py-2">Weiter lesen...</a></p>
+              <p><a th:href="@{'/readBlog/' + ${blog.id}}" class="btn btn-primary btn-sm px-3 py-2">Weiterlesen...</a></p>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@
     
     
     <!-- FOOTER -->
-    <div th:replace="website/partials/_footer"></div>
+    <th:block th:replace="website/partials/_footer"></th:block>
 
     
     <!-- SCRIPT -->
