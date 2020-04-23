@@ -8,7 +8,7 @@
            
            <h3 class="h5 text-black mb-3">Neueste Beiträge:</h3>
            <div class="d-flex no-block align-items-center" th:each="blog: ${listOfBlog}">
-              <div class="mr-3" ><img th:each = "file, itrStat : ${listOfImage}"   th:src="@{'/images/' + ${file.modifiedFileName}}" th:if="${file.blog.id == blog.id}"  alt="user" class="rounded-circle" width="45"height="45" /> </div>
+              <div class="mr-3" ><img th:each = "file, itrStat : ${listOfImage}"   th:src="@{'/images/' + ${file.modifiedFileName}}" th:if="${file.blog.id == blog.id}"  alt="user" class="rounded-circle" width="45"height="45" style="border-radius: 30% !important;" /> </div>
                     <div class="name-text align-self-center">
                          <a class="text-dark mb-0 font-16 font-weight-medium" th:text=${blog.title} th:href="@{'/readBlog/' + ${blog.id}}"></a>
                          <div class="name-text align-self-center">
