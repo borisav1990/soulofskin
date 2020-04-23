@@ -1,24 +1,20 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
 	  xmlns:th="http://www.thymeleaf.org">
-    
     <!-- HEAD -->
     <th:block th:replace="website/partials/_head"></th:block>
-  
   <body>
-    
     <!-- HEADER -->
     <th:block th:replace="website/partials/_header"></th:block>
-   
-
-   
-
-      <!-- CONTENT -->
+     <!-- CONTENT -->
      <div class="section">
       <div class="container" style="border-top: 1px solid #c7cacd;">
+      <h2 class="home-pupular-posts-title" style="left: 0; width: 100%; top: 0; transform: translateY(-55%);
+         -webkit-transform: translateY(-55%); -moz-transform: translateY(-55%);text-align: center;font-size: 18px; color: #313131; letter-spacing: 5px;">
+         <span  style="font-size: inherit;color: inherit;padding: 0 18px;line-height: 1;display: inline-block;background: #fff;text-decoration: none !important">BY MINJA</span>
+      </h2>
+      
       <div class="row">
- 
-
         <div class="row justify-content-center mb-5 element-animate fadeInUp element-animated">
           <div class="col-md-8 text-center">
             <h2 class="heading mb-4">About me</h2>
@@ -28,31 +24,24 @@
                 <h3 class="mt-0 text-black">Minja Sinkovic</h3>
               </div>
             </div>
-           
             <p >Wie weit bist Du von der Frau, die Du wirklich sein willst, entfernt ?</p>
             <p >Ich bin Minja, 31 Jate alt, lebe in Berlin. Von Beruf bin ich Pharmazeutin,
                Spezialist für Hautpﬂege und Kosmetik, und Apothekerin. Der Blog entstand aus meinem Wunsch heraus, 
                all das Wissen, das ich im Laufe der Jahre gesammelt habe, mit euch zu teilen und euch zu helfen,
                sich äußerlich und innerlich auf angemessene und sanfte Weise zu pﬂegen und sich in eurer  Haut wohl zu fühlen! </p>
-              <p >Nur wenn wir außen genährt und innen ausgeglichen sind,
-                 fühlen wir uns in unserer Haut wunderbar und können unser volles Potenzial frei entfalten! 
-                 </p>
-                <p>Ich würde mich freuen, wenn dieser Blog Dich dazu inspirieren würde, die beste und schönste Version von Dir selbst zu sein!
-                  Schön dass Du da bist!</p>
-              <p><a href="/contact" class="btn btn-primary btn-sm px-3 py-2">KONTAKTIERE MICH...</a></p>
+            <p>Nur wenn wir außen genährt und innen ausgeglichen sind,fühlen wir uns in unserer Haut wunderbar und können unser volles Potenzial frei entfalten! </p>
+            <p>Ich würde mich freuen, wenn dieser Blog Dich dazu inspirieren würde, die beste und schönste Version von Dir selbst zu sein!Schön dass Du da bist!</p>
+            <p><a href="/contact" class="btn btn-primary btn-sm px-3 py-2">KONTAKTIERE MICH...</a></p>
           </div>
         </div>         
-         </div>
+       </div>
     </div>
   </div>
  
-    
-    
     <!-- FOOTER -->
     <th:block th:replace="website/partials/_footer"></th:block>
 
-    
-    <!-- SCRIPT -->
+     <!-- SCRIPT -->
     <script src="../../website/js/jquery-3.2.1.min.js"></script>
     <script src="../../website/js/popper.min.js"></script>
     <script src="../../website/js/bootstrap.min.js"></script>

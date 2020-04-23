@@ -1,13 +1,9 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
 	  xmlns:th="http://www.thymeleaf.org" >
-
- <!-- HEAD -->
+<!-- HEAD -->
     <th:block th:replace="website/partials/_head"></th:block>
-  
-    
-
-<body>
+ <body>
 <header role="banner"  style="background-color: #000000d6;">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -15,8 +11,7 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
-          <div class="collapse navbar-collapse" id="navbarsExample05">
+           <div class="collapse navbar-collapse" id="navbarsExample05">
             <ul class="navbar-nav pl-md-5 ml-auto">
               <li class="nav-item">
                 <a class="nav-link active" href="/">Home</a>
@@ -42,7 +37,6 @@
             </ul>
 
             <div class="navbar-nav ml-auto">
-            
             <ul class="list-unstyled footer-link d-flex footer-social">
               <li><a href="#" class="p-2"><span class="fa fa-twitter"></span></a></li>
               <li><a href="#" class="p-2"><span class="fa fa-facebook"></span></a></li>
@@ -50,53 +44,35 @@
               <li><a href="#" class="p-2"><span class="fa fa-instagram"></span></a></li>
             </ul>
             </div>
-            
           </div>
         </div>
       </nav>
     </header> 
     
-
-
-  
+     <div class="row" style="height:50px"></div>
  
  <!-- CONTENT -->
   <div class="section">
-    <div class="container" style="border-top: 1px solid #c7cacd;">
-      <h2 class="home-pupular-posts-title" style="left: 0; width: 100%; top: 0; transform: translateY(-55%);
-                                          -webkit-transform: translateY(-55%); -moz-transform: translateY(-55%);
-                                           text-align: center;font-size: 18px; color: #313131; letter-spacing: 5px;">
-         <span  style="font-size: inherit;
-         color: inherit;padding: 0 18px;line-height: 1;display: inline-block;background: #fff;text-decoration: none !important">
-		BY MINJA		
-		</span>
-	</h2>
+     <div class="container" style="border-top: 1px solid #c7cacd;">
+      <h2 class="home-pupular-posts-title" style="left: 0; width: 100%; top: 0; transform: translateY(-55%);-webkit-transform: translateY(-55%); -moz-transform: translateY(-55%);
+          text-align: center;font-size: 18px; color: #313131; letter-spacing: 5px;">
+        <span  style="font-size: inherit;color: inherit;padding: 0 18px;line-height: 1;display: inline-block;background: #fff;text-decoration: none !important">BY MINJA</span>
+	  </h2>
       
                    <!-- **************************INFORMATION FROM RESPONSE SAVE************************************* -->
                     <div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${saveSuccess}">
-                    
-                      <strong th:text="${saveSuccess}"></strong>
+                       <strong th:text="${saveSuccess}"></strong>
                     </div>
-                    
                     <!-- **************************INFORMATION FROM RESPONSE ERROR************************************* -->
                     <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert" th:if="${error}">
-                      
                       <strong th:text="${error}"></strong>
                    </div>
-                    
-    
-    
-    
-      <div class="row" >
-     
-         
-        <div class="col-lg-8">
-       
-          <figure class="row" th:each = "file, itrStat : ${listOfImg}"  >
+    <div class="row" >
+      <div class="col-lg-8">
+        <figure class="row" th:each = "file, itrStat : ${listOfImg}"  >
             <img th:src="@{'../../images/' + ${file.modifiedFileName}}" style="height:100%; width:100%">
             <figcaption></figcaption>
           </figure>
-          
           <div class="row align-items-center justify-content-center text-center">
             <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
              <div class="name-text align-self-center">
@@ -105,13 +81,10 @@
              <h4 class="mb-5" th:text= "${objOfBlog.title}"></h4>
            </div>
          </div>
-          
-          
-          <textarea name="text" id="message" class="form-control" th:text= "${objOfBlog.body}"  rows="15" cols="100" disabled="disabled" style="background-color: white; text-align: justify; border: none;" ></textarea>
-          
-          <p class="mb-5"  th:text= "${objOfBlog.footer}"></p>
+          <p  class="mb-5" th:text="${objOfBlog.body}" style="white-space: pre-line;" align="justify" ></p>
+          <p class="mb-5"  th:text= "${objOfBlog.footer}" style="white-space: pre-line;" align="center"></p>
      
-       <div class="btn btn-light"><a href="/" class="reply rounded">Zurück nach Homepage </a></div>
+      <a href="/" class="btn btn-primary btn-sm px-3 py-2">Zurück nach Homepage </a>
             
 
 

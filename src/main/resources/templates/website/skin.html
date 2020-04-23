@@ -16,24 +16,18 @@
       <!-- CONTENT -->
      <div class="section">
       <div class="container" style="border-top: 1px solid #c7cacd;">
-      <h2 class="home-pupular-posts-title" style="left: 0; width: 100%; top: 0; transform: translateY(-55%);
-                                          -webkit-transform: translateY(-55%); -moz-transform: translateY(-55%);
-                                           text-align: center;font-size: 18px; color: #313131; letter-spacing: 5px;">
-         <span  style="font-size: inherit;
-         color: inherit;padding: 0 18px;line-height: 1;display: inline-block;background: #fff;text-decoration: none !important">
-		BY MINJA		
-		</span>
-	</h2>
+      <h2 class="home-pupular-posts-title" style="left: 0; width: 100%; top: 0; transform: translateY(-55%);  -webkit-transform: translateY(-55%); -moz-transform: translateY(-55%);  text-align: center;font-size: 18px; color: #313131; letter-spacing: 5px;">
+         <span  style="font-size: inherit; color: inherit;padding: 0 18px;line-height: 1;display: inline-block;background: #fff;text-decoration: none !important">BY MINJA</span>
+	 </h2>
         <div class="row align-items-stretch">
-        
-         <div >
+        <div >
            <div class="half d-md-flex d-block" th:each="blog: ${listOfBlog}" >
             <div class="image order-2"  th:each = "file, itrStat : ${listOfImage}" th:if="${file.blog.id == blog.id AND blog.side == 'links'}" th:style="'background-image: url('+ @{'../../images/' + ${file.modifiedFileName}} +');'"></div>
             <div class="image" th:each = "file, itrStat : ${listOfImage}" th:if="${file.blog.id == blog.id AND blog.side == 'rechts'}" th:style="'background-image: url('+ @{'../../images/' + ${file.modifiedFileName}} +');'"></div>
             <div class="text text-center element-animate">
               <span class="post-meta" th:text= "${blog.viewDate}"></span>
               <h3 class="mb-4" th:text= "${blog.title}"></h3>
-              <p class="mb-5" th:text= "${blog.header}"></p>
+              <p class="mb-5" th:text= "${blog.header}" align="justify"></p>
               <p><a th:href="@{'/readBlog/' + ${blog.id}}" class="btn btn-primary btn-sm px-3 py-2"> Weiterlesen...</a></p>
             </div>
           </div>
