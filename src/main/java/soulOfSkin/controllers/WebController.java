@@ -20,7 +20,7 @@ import soulOfSkin.service.ImageService;
 import soulOfSkin.service.MessageService;
 
 @Controller
-@RequestMapping("/")
+//@RequestMapping("/")
 public class WebController {
 
 	@Autowired
