@@ -9956,12 +9956,12 @@ header .search-form .form-control {
 }
 
 .slider-item {
-  background-image: url('../../website/images/hero_4.jpg');
+  
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  height: 500px;
-  min-height: 500px;
+  height: 200px;
+  min-height: 200px;
   position: relative;
 }
 
@@ -9969,8 +9969,7 @@ header .search-form .form-control {
   content: "";
   position: absolute;
   top: 0;
-  height: 500px;
-  width: 100%;
+  
   
   background: black;
   background: -moz-linear-gradient(top, #2125298c 0%, rgba(238, 159, 167, 0) 100%);
@@ -9985,8 +9984,8 @@ header .search-form .form-control {
 
 .slider-item .slider-text {
   color: #fff;
-  height: calc(100vh);
-  min-height: 700px;
+  height: 450px;
+  min-height: 450px;
 }
 
 .slider-item .slider-text .child-name {
@@ -9995,25 +9994,24 @@ header .search-form .form-control {
 }
 
 .slider-item .slider-text h1 {
-  font-size: 50px;
+  font-size: 70px;
   color: #fff;
   line-height: 1.2;
   font-weight: 300 !important;
-  text-transform: uppercase;
+  font-family: 'Dancing Script', cursive;
+  
   margin-bottom: 30px;
   margin-left: 0.5em;
 }
 
 .slider-item .slider-text h1 span {
-  color: white;
-  background-color: #71774b;
-  -webkit-box-shadow: 0.5em 0 0 #71774b, -0.5em 0 0 #71774b;
-  box-shadow: 0.5em 0 0 #71774b, -0.5em 0 0 #71774b;
+  color: black;
+ 
 }
 
 @media (max-width: 991.98px) {
   .slider-item .slider-text h1 {
-    font-size: 40px;
+    font-size: 60px;
   }
 }
 
